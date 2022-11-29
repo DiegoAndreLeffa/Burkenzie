@@ -1,10 +1,13 @@
-import { useState } from "react";
 import logo from "../../img/LogoHamburKenzie.svg";
 import { StyledHeader } from "./style";
 
-export function Header({ products, filteredProducts, setFilteredProducts }) {
-  const [busca, setBusca] = useState("");
-
+export function Header({
+  products,
+  filteredProducts,
+  setFilteredProducts,
+  busca,
+  setBusca,
+}) {
   function filtro() {
     const filtro = products.filter((produto) => {
       const { name, category } = produto;

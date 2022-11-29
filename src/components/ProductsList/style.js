@@ -103,6 +103,7 @@ export const StyledProductList = styled.div`
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
+      overflow-y: auto;
     }
   }
 `;

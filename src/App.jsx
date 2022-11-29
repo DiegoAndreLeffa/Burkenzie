@@ -6,11 +6,13 @@ import { ProductList } from "./components/ProductsList";
 import { api } from "./services/api";
 import "react-toastify/dist/ReactToastify.min.css";
 import { StayledApp } from "./styleApp";
+import { StyledDivBusca } from "./styles/divBuscaStyles";
 
 function App() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentSale, setCurrentSale] = useState([]);
+  const [busca, setBusca] = useState("");
 
   const [item, setItem] = useState([]);
 
@@ -26,12 +28,19 @@ function App() {
     getProducts();
   }, []);
 
+  function limpaBusca() {
+    setBusca("");
+    setFilteredProducts([]);
+  }
+
   return (
     <StayledApp className="container">
       <Header
         products={products}
         filteredProducts={filteredProducts}
         setFilteredProducts={setFilteredProducts}
+        busca={busca}
+        setBusca={setBusca}
       />
       <div className="main">
         {filteredProducts.length === 0 ? (
@@ -52,13 +61,21 @@ function App() {
           </>
         ) : (
           <>
-            <ProductList
-              products={filteredProducts}
-              currentSale={currentSale}
-              setCurrentSale={setCurrentSale}
-              item={item}
-              setItem={setItem}
-            />
+            <StyledDivBusca>
+              <div className="divBusca">
+                <h2>
+                  Resultado para: <p> {busca}</p>
+                </h2>
+                <button onClick={limpaBusca}>Limpar busca</button>
+              </div>
+              <ProductList
+                products={filteredProducts}
+                currentSale={currentSale}
+                setCurrentSale={setCurrentSale}
+                item={item}
+                setItem={setItem}
+              />
+            </StyledDivBusca>
             <Cart
               currentSale={currentSale}
               setCurrentSale={setCurrentSale}

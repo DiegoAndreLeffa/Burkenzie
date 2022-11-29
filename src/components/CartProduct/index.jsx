@@ -7,6 +7,10 @@ export function Products({ currentSale, setCurrentSale, item, setItem }) {
       return prod.name !== el;
     });
     setCurrentSale(remove);
+    const removeItem = item.filter((prodId) => {
+      return prodId !== id;
+    });
+    setItem(removeItem);
   }
 
   return (
